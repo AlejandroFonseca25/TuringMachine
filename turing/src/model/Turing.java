@@ -25,6 +25,26 @@ public class Turing {
 	//---------------------
 	//     F.METHODS
 	//---------------------
+	public char readCell (char head) {
+		char letter = '#';
+		if (cellsNo > 0) {
+			switch (head) {
+			case '0': 
+				letter = c0.getLetter();
+				break;
+
+			case '1':
+				letter = c1.getLetter();
+				break;
+
+			case '2': 
+				letter = c2.getLetter();
+				break;
+			}
+		}
+		return letter;
+	}
+	
 	public void addCell(char letter, char head) {
 		Cell toAdd = new Cell(letter);
 		if (firstCell == null) { //Empty list
@@ -92,26 +112,6 @@ public class Turing {
 			}
 			++cellsNo;
 		}
-	}
-
-	public char readCell (char head) {
-		char letter = '#';
-		if (cellsNo > 0) {
-			switch (head) {
-			case '0': 
-				letter = c0.getLetter();
-				break;
-
-			case '1':
-				letter = c1.getLetter();
-				break;
-
-			case '2': 
-				letter = c2.getLetter();
-				break;
-			}
-		}
-		return letter;
 	}
 
 	public void removeCell (char head) {
