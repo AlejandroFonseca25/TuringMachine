@@ -17,6 +17,6 @@ public class Main {
 	
 	public void timePrinter () throws IOException {
 		long time = control.initiate();
-		System.out.println(String.valueOf(time));
+		System.out.println("Operation time: " + String.valueOf(time) + " millisecond(s).");
 	}
 }

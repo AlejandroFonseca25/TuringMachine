@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Control {
-	public static final String INPUT_PATH = "data\\in_turing.txt";
+	public static final String INPUT_PATH = "data\\input.txt";
 	public static final String OUTPUT_PATH = "data\\output.txt";
 	private BufferedReader br;
 	private BufferedWriter bw;
@@ -23,9 +23,10 @@ public class Control {
 	public long initiate() throws IOException {
 		String instructions = br.readLine(); 		  			
 		long beginning = System.currentTimeMillis();  
+		
 		while (instructions != null) {	//Start: Reads the file lines 
 			int pos = 0;
-			while (pos < instructions.length()) {				//Reads chars			
+			while (pos < instructions.length()) {				//Reads the chars from the line			
 				char head = instructions.charAt(pos);
 				switch (head) {
 				case '0':			
@@ -44,6 +45,7 @@ public class Control {
 			instructions = br.readLine();
 			turing = new Turing();
 		} //All lines have been read
+		
 		br.close();
 		bw.close();
 		long time = System.currentTimeMillis() - beginning;

@@ -42,17 +42,16 @@ public class Turing {
 				toAdd.setNextCell(firstCell); 
 				toAdd.setPrevCell(firstCell.getPrevCell());
 				firstCell.setPrevCell(toAdd);
-				if (cellsNo == 1) {
-					firstCell.setNextCell(toAdd);
-				}
+				Cell oldFirstCell = firstCell;
 				firstCell = toAdd;
 				if(cellsNo == 1) { //Special case 
+					oldFirstCell.setNextCell(firstCell);
 					c2 = firstCell.getNextCell();
 				}
 				else if (cellsNo == 2) { //Special case 
 					c1 = firstCell.getNextCell();
 				}
-				else if (cellsNo % 2 != 0) { //Rule 
+				if (cellsNo % 2 != 0) { //Rule 
 					c1 = c1.getPrevCell();
 				}
 				c0 = firstCell;
@@ -137,17 +136,19 @@ public class Turing {
 					break;
 
 				case '1':
-					c1.getPrevCell().setNextCell(c1.getNextCell());
-					c1.getNextCell().setPrevCell(c1.getPrevCell());
+					Cell prev = c1.getPrevCell();
+					Cell next = c1.getNextCell();
+					prev.setNextCell(next);
+					next.setPrevCell(prev);
 					if(cellsNo % 2 == 0) {
-						c1 = c1.getNextCell();
 						if(cellsNo == 2) {
 							c0 = c0.getNextCell();
 							firstCell = c0;
 						}
+						c1 = next;
 					}
 					else {
-						c1 = c1.getPrevCell();
+						c1 = prev;
 					}
 					break;
 
@@ -171,11 +172,43 @@ public class Turing {
 		return firstCell;
 	}
 	
+	public Cell getC0() {
+		return c0;
+	}
+
+	public Cell getC1() {
+		return c1;
+	}
+
+	public Cell getC2() {
+		return c2;
+	}
+
+	public int getCellsNo() {
+		return cellsNo;
+	}
+
 	//---------------------
 	//        SETS
 	//---------------------
 	public void setFirstCell(Cell firstCell) {
 		this.firstCell = firstCell;
+	}
+
+	public void setC0(Cell c0) {
+		this.c0 = c0;
+	}
+
+	public void setC1(Cell c1) {
+		this.c1 = c1;
+	}
+
+	public void setC2(Cell c2) {
+		this.c2 = c2;
+	}
+
+	public void setCellsNo(int cellsNo) {
+		this.cellsNo = cellsNo;
 	}
 	
 }
