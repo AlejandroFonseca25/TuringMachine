@@ -62,16 +62,19 @@ public class Turing {
 				if (cellsNo % 2 == 0) { //Even cells
 					toAdd.setNextCell(c1.getNextCell());
 					toAdd.setPrevCell(c1);
+					c1.getNextCell().setPrevCell(toAdd);
 					c1.setNextCell(toAdd);
 					c1 = c1.getNextCell();
 				}
 				else { //Odd cells
 					toAdd.setNextCell(c1);
-					toAdd.setPrevCell(c1.getPrevCell()); 
+					toAdd.setPrevCell(c1.getPrevCell());
+					c1.getPrevCell().setNextCell(toAdd);
 					c1.setPrevCell(toAdd);
 					if (cellsNo == 1) {
 						firstCell = toAdd;
 						c0 = firstCell;
+						c2.setPrevCell(toAdd);
 					}
 					c1 = c1.getPrevCell();
 				}
@@ -80,6 +83,8 @@ public class Turing {
 			case '2': //C2
 				toAdd.setNextCell(firstCell);
 				toAdd.setPrevCell(c2);
+				firstCell.getPrevCell().setNextCell(toAdd);
+				firstCell.setPrevCell(toAdd);
 				c2 = toAdd;
 				if (cellsNo % 2 == 0) {
 					c1 = c1.getNextCell();
@@ -89,42 +94,27 @@ public class Turing {
 			++cellsNo;
 		}
 	}
-	
+
 	public char readCell (char head) {
-		char letter = '$'; //If this appears on the file, something's wrong
+		char letter = '#';
 		if (cellsNo > 0) {
 			switch (head) {
 			case '0': 
-				if (c0 == null) {
-					letter = '#';
-				}
-				else {
 				letter = c0.getLetter();
-				}
 				break;
-				
+
 			case '1':
-				if (c1 == null) {
-					letter = '#';
-				}
-				else {
 				letter = c1.getLetter();
-				}
 				break;
-				
+
 			case '2': 
-				if (c2 == null) {
-					letter = '#';
-				}
-				else {
 				letter = c2.getLetter();
-				}
 				break;
 			}
 		}
 		return letter;
 	}
-	
+
 	public void removeCell (char head) {
 		if (cellsNo > 0) {
 			if (cellsNo == 1) {
@@ -132,6 +122,7 @@ public class Turing {
 				c0 = firstCell;
 				c1 = firstCell;
 				c2 = firstCell;
+				--cellsNo;
 			}
 			else {
 				switch (head) {
@@ -139,6 +130,7 @@ public class Turing {
 					c2.setNextCell(c0.getNextCell());
 					c0.getNextCell().setPrevCell(c2);
 					c0 = c0.getNextCell();
+					firstCell = c0;
 					if (cellsNo % 2 == 0) {
 						c1 = c1.getNextCell();
 					}
@@ -149,6 +141,10 @@ public class Turing {
 					c1.getNextCell().setPrevCell(c1.getPrevCell());
 					if(cellsNo % 2 == 0) {
 						c1 = c1.getNextCell();
+						if(cellsNo == 2) {
+							c0 = c0.getNextCell();
+							firstCell = c0;
+						}
 					}
 					else {
 						c1 = c1.getPrevCell();

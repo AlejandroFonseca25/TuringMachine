@@ -8,8 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Control {
-	public static final String INPUT_PATH = "C:\\Users\\User\\Documents\\Laboratorio 3\\turing\\data\\in_turing.txt";
-	public static final String OUTPUT_PATH = "C:\\Users\\User\\Documents\\Laboratorio 3\\turing\\data\\output.txt";
+	public static final String INPUT_PATH = "data\\in_turing.txt";
+	public static final String OUTPUT_PATH = "data\\output.txt";
 	private BufferedReader br;
 	private BufferedWriter bw;
 	private Turing turing;

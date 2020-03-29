@@ -7,9 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class TextFileCompareBeta {
-	public static final String TEXT_ONE_PATH = "C:\\Users\\User\\Documents\\Laboratorio 3\\turing\\data\\out_turing.txt";
-	public static final String TEXT_ANOTHER_PATH = "C:\\Users\\User\\Documents\\Laboratorio 3\\turing\\data\\output.txt";
-	public static final String DIFFERENCES_DETAIL_PATH = "C:\\Users\\User\\Documents\\Laboratorio 3\\turing\\data\\RESULT.txt";;
+	public static final String TEXT_ONE_PATH = "data\\out_turing.txt";
+	public static final String TEXT_ANOTHER_PATH = "data\\output.txt";
+	public static final String DIFFERENCES_DETAIL_PATH = "data\\RESULT.txt";;
 	
 
 	public static void main(String[] args) throws IOException {
